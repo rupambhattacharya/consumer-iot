@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CSVService {
@@ -25,7 +26,19 @@ public class CSVService {
         }
     }
 
-    public List<Product> getAllProduct() {
-        return repository.findAll();
+    public List<Product> getProductByProductIdAndTimeStamp(String productId, String dateTime) {
+        return repository.findAll().stream()
+                .filter(s->s.getId().contentEquals(productId) && s.getDateTime().contentEquals(dateTime))
+                .collect(Collectors.toList());
+    }
+
+    public List<Product> getProductByProductIdAndTimeStamp(String productId) {
+        return repository.findAll().stream()
+                .filter(s->s.getId().contentEquals(productId))
+                .collect(Collectors.toList());
+    }
+    public List<Product> getProduct() {
+        return repository.findAll().stream()
+                .collect(Collectors.toList());
     }
 }

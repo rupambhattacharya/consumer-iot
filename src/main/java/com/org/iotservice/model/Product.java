@@ -12,18 +12,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class
 Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String eventId;
     private String dateTime;
-    private String productId;
     private String latitude;
     private String longitude;
     private String battery;
@@ -33,7 +30,7 @@ Product {
    public Product(String dateTime, String eventId, String productId, String latitude, String longitude, String battery, String light, String airplaneMode) {
         this.dateTime = dateTime;
         this.eventId = eventId;
-        this.productId = productId;
+        this.id = productId;
         this.latitude = latitude;
         this.longitude = longitude;
         this.battery = battery;
